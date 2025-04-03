@@ -1,0 +1,17 @@
+.{
+    .name = .atproto,
+    .version = "0.0.0",
+    .fingerprint = 0xcd2f13066f9c277a,
+    .minimum_zig_version = "0.15.0-dev.63+aa3db7cc1",
+    .dependencies = .{
+        .zzz = .{
+            .url = "git+https://github.com/gabydd/zzz?ref=0.15#e49e5c70fe1ab0e98aeb99c0ea6b039179c07070",
+            .hash = "zzz-0.3.0-4HoaJqZQAgDlAbAjO6sa_5FDeYuLVDHCAjq0gVURNGea",
+        },
+    },
+    .paths = .{
+        "build.zig",
+        "build.zig.zon",
+        "src",
+    },
+}
