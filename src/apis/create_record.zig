@@ -18,11 +18,11 @@ const Input = struct {
 const Output = struct {
     cid: []const u8,
     uri: []const u8,
-    commit: struct {
+    commit: ?struct {
         cid: []const u8,
         rev: []const u8,
-    }, // is not required
-    // validationStatus: ?enum {valid, unknown},
+    } = null,
+    validationStatus: ?enum { valid, unknown } = null,
 };
 
 pub fn handler(ctx: *const http.Context, db: *Database) !http.Respond {
@@ -30,7 +30,7 @@ pub fn handler(ctx: *const http.Context, db: *Database) !http.Respond {
     const data = try std.json.parseFromSlice(Input, db.gpa, body, .{});
     const res = try createRecord(ctx.allocator, db, data.value);
 
-    const json = try std.json.stringifyAlloc(ctx.allocator, res, .{});
+    const json = try std.json.stringifyAlloc(ctx.allocator, res, .{ .emit_null_optional_fields = false });
     return ctx.response.apply(.{
         .status = .OK,
         .mime = .JSON,
@@ -57,7 +57,7 @@ pub fn createRecord(arena: std.mem.Allocator, db: *Database, input: Input) !Outp
     const tid = db.tid.next();
     std.debug.print("{s}\n", .{&tid});
 
-    try db.put(input.collection, &tid, input.record);
+    try db.put(input.collection, input.repo, &tid, input.record);
 
     return .{
         .cid = base32,

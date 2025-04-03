@@ -34,8 +34,10 @@ pub fn main() !void {
         Middleware.init({}, corsMiddleware).layer(),
         Route.init("/xrpc/com.atproto.repo.createRecord").post(&db, apis.CreateRecord.handler).layer(),
         Route.init("/xrpc/com.atproto.repo.getRecord").get(&db, apis.GetRecord.handler).layer(),
+        Route.init("/xrpc/com.atproto.repo.listRecords").get(&db, apis.ListRecords.handler).layer(),
         Route.init("/xrpc/com.atproto.repo.createRecord").options({}, notFoundHandler).layer(),
         Route.init("/xrpc/com.atproto.repo.getRecord").options({}, notFoundHandler).layer(),
+        Route.init("/xrpc/com.atproto.repo.listRecords").options({}, notFoundHandler).layer(),
     }, .{});
     defer router.deinit(allocator);
 
