@@ -5,8 +5,8 @@
     .minimum_zig_version = "0.15.0-dev.63+aa3db7cc1",
     .dependencies = .{
         .zzz = .{
-            .url = "git+https://github.com/gabydd/zzz?ref=0.15#e49e5c70fe1ab0e98aeb99c0ea6b039179c07070",
-            .hash = "zzz-0.3.0-4HoaJqZQAgDlAbAjO6sa_5FDeYuLVDHCAjq0gVURNGea",
+            .url = "git+https://github.com/gabydd/zzz?ref=0.15#e8f49e75072d284c3a0f26dd47e1c783dbbec509",
+            .hash = "zzz-0.3.0-4HoaJqZQAgAVTC3Horxl22Uu66NaddL3Pe7C_dVphBU7",
         },
     },
     .paths = .{
